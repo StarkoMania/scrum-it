@@ -1,0 +1,15 @@
+<window id="creationWin" title="Neues Release erstellen" border="normal" hflex="min" apply="de.rs.scrumit.component.release.CreateReleaseController" position="center,center" action="show: slideDown; hide: slideUp">
+    <vbox hflex="min" align="center">
+    	<vlayout vflex="1" hflex="min" spacing="5px" sclass="z-align-left">
+			<textbox id="codeBox" width="200px" constraint="no empty" placeholder="code" maxlength="128" />
+			<datebox id="releaseDateBox" width="150px" placeholder="release date" constraint="no empty" />
+			<label value="Description" />
+			<ckeditor id="descriptionBox" height="300px" toolbar="Simple" filebrowserImageBrowseUrl="/widgets/input/wysiwyg_editor/img" filebrowserFlashBrowseUrl="/widgets/input/wysiwyg_editor/flash" customConfigurationsPath="/widgets/input/wysiwyg_editor/config.js"></ckeditor>
+			<label id="message" sclass="warn" value="&#160;" />
+			<hlayout>
+				<button id="create" label="Erstellen" iconSclass="z-icon-save" sclass="btn btn-sm btn-info" />
+				<button id="close" label="Schließen" iconSclass="z-icon-stop" sclass="btn btn-sm btn-info" />
+			</hlayout>
+    	</vlayout>
+	</vbox>
+</window>

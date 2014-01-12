@@ -1,0 +1,27 @@
+<?page title="Dashboard - scrum-it"?>
+<!-- Load Bootstrap  -->
+<?link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link href="/css/style.css" rel="stylesheet" type="text/css"?>
+
+<!-- Google Open Sans font -->
+<!-- Load fonts from local -->
+<?link href="/css/fonts.css" rel="stylesheet" type="text/css"?>
+<?link href="/less/index.less" rel="stylesheet" type="text/css"?>
+
+<?init class="de.rs.scrumit.auth.AuthenticationInit"?>
+
+<zk>
+	<!-- create only when the currentUser is not an anonymous  -->
+	<div if="${not sessionScope.userCredential.anonymous}" vflex="1">
+		<include id="navbar" src="/template/navbar.zul"/>             
+		<hlayout id="main" spacing="0" vflex="1" apply="de.rs.scrumit.controller.MainIncludeComposer">
+			<include src="/template/sidebar.zul"/>    
+			<vlayout spacing="0" hflex="1" vflex="1">
+				<include id="mainInclude" vflex="1" hflex="1" />
+			</vlayout>
+		</hlayout>
+	</div>
+	<div if="${sessionScope.userCredential.anonymous}">
+		Redirect to login page.....
+	</div>
+</zk>

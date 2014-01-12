@@ -1,0 +1,10 @@
+<window id="modalDialog" title="Edit Description" border="normal" width="500px"
+    apply="de.rs.scrumit.component.release.ReleaseDescriptionController"
+    position="center,center" closable="true"
+    action="show: slideDown;hide: slideUp">
+    <vlayout>
+        <ckeditor id="descriptionEditor" height="300px" toolbar="Simple" filebrowserImageBrowseUrl="/widgets/input/wysiwyg_editor/img" filebrowserFlashBrowseUrl="/widgets/input/wysiwyg_editor/flash" customConfigurationsPath="/widgets/input/wysiwyg_editor/config.js">
+		</ckeditor>
+        <button id="saveBtn" hflex="1" label="Save and Close" iconSclass="z-icon-mail-forward" sclass="btn btn-sm btn-info"/>
+    </vlayout>
+</window>

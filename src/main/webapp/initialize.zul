@@ -1,0 +1,56 @@
+<?page title="Initialize - scrum-it"?>
+<!-- Load Bootstrap  -->
+<?link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link href="/css/style.css" rel="stylesheet" type="text/css"?>
+
+<!-- Google Open Sans font -->
+<!-- Load fonts from local -->
+<?link href="/css/fonts.css" rel="stylesheet" type="text/css"?>
+<?link href="/less/index.less" rel="stylesheet" type="text/css"?>
+
+<!-- it is a login page, no authentication protection and use anonymous template -->
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/template/template-anonymous.zul"?>
+<zk>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center" pack="center" spacing="20px">
+		<vlayout>
+			<window id="loginWin"
+				apply="de.rs.scrumit.controller.InitializationController"
+				title="Initialize first (dummy) data" border="normal" width="850px">
+				<hbox spacing="10px">
+			        <vlayout>
+			            <listbox id="nameList" checkmark="true" hflex="1">
+			                <auxhead>
+			                    <auxheader colspan="2">
+			                        <button id="fetchBtn" label="Initialize" hflex="1" sclass="btn btn-info" height="35px" autodisable="self" />
+			                    </auxheader>
+			                </auxhead>
+			                <listhead>
+			                    <listheader label="Choose Element"></listheader>
+			                </listhead>
+			            </listbox>
+			            <hlayout sclass="selected-area">
+			                Selected Number :
+			                <label id="selectedText" />
+			            </hlayout>
+			        </vlayout>
+			 
+			        <listbox hflex="1">
+			            <auxhead>
+			                <auxheader colspan="2">Initialized Elements</auxheader>
+			            </auxhead>
+			            <listhead>
+			                <listheader label="Element" />
+			                <listheader label="Description" />
+			            </listhead>
+			        </listbox>
+			        <groupbox id="server" mold="3d" closable="false">
+			            <caption label="Status" />
+			            <image id="serverimg" src="/imgs/webserver.png" onClick='alert("Show Staus")' />
+			        </groupbox>
+			 
+			        <timer id="timer" delay="250" repeats="false" onCreate="self.stop()"></timer>
+				</hbox>
+			</window>
+		</vlayout>
+	</hbox>
+</zk>

@@ -1,0 +1,35 @@
+<div sclass="conversation z-panel" vflex="1">
+	<include src="/widgets/breadcrumb.zul" />
+	<vlayout sclass="page-content" xmlns:n="native" spacing="0" vflex="1" style="overflow-y: auto;">
+		<include src="/widgets/pageHeader.zul" />
+        <vlayout hflex="1" apply="de.rs.scrumit.component.release.OverviewTableController">
+			<grid sclass="domain" hflex="1" emptyMessage="Es wurde noch kein Release angelegt">
+			    <columns>
+					<column label="Code" width="150px" iconSclass="z-icon-caret-right blue"/>
+					<column label="Release Date" width="120px" iconSclass="z-icon-caret-right blue"/>
+					<column label="Short Description" iconSclass="z-icon-caret-right blue"/>
+					<column label="Actions" width="150px" iconSclass="z-icon-caret-right blue"/>
+			    </columns>
+			    <rows id="releaseOverviewRows">
+			        
+			    </rows>
+			</grid>
+			<hlayout sclass="action" hflex="1" apply="de.rs.scrumit.component.release.CreateReleaseController">
+		        <textbox id="newCode" placeholder="code*" width="150px"/>
+		        <datebox id="newSReleaseDate" format="dd.MM.yyyy" placeholder="start*" width="120px"/>
+		        <textbox id="newDescription" placeholder="short description" width="350px"/>
+		        <span hflex="min">
+					<button id="addReleaseBtn" label="Create New Release" iconSclass="z-icon-mail-forward" sclass="btn btn-sm btn-info"/>
+		        </span>
+			</hlayout>
+			<space height="15px" />
+			<vlayout hflex="1">
+				<window closable="true" border="normal" sclass="alert alert-info">
+					<caption iconSclass="z-icon-exclamation-triangle">
+						Änderungen werden sofort übernommen und gespeichert. Es besteht somit keine Notwendigkeit irgendwo einen Speichern-Button zu suchen ;-)
+					</caption>
+				</window>
+			</vlayout>
+		</vlayout>
+	</vlayout>
+</div>

@@ -1,0 +1,5 @@
+<div sclass="page-header" apply="de.rs.scrumit.component.PageHeaderComposer">
+	<label id="pageHeaderLabel" value="Release - Overview" />
+	<a id="projectNameLabel" label="overview &amp; stats"
+		iconSclass="z-icon-angle-double-right" sclass="subtitle" />
+</div>

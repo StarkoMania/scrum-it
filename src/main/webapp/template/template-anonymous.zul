@@ -1,0 +1,14 @@
+<zk>
+	<!-- free to access template, without sidebar  -->
+	<borderlayout hflex="1" vflex="1">
+		<north border="none" >
+			<div sclass="navbar">
+				<!-- Brand Logo -->
+				<a sclass="pull-left navbar-brand" iconSclass="z-icon-project"/>
+			</div>
+		</north>
+		<center id="mainContent" autoscroll="true" border="none" self="@insert(content)">
+			<!-- the content will be insert to here -->
+		</center>
+	</borderlayout>
+</zk>

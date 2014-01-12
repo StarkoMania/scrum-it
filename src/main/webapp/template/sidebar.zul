@@ -1,0 +1,36 @@
+<div id="sidebar" sclass="sidebar" apply="de.rs.scrumit.controller.SidebarComposer">
+	<!-- Shortcuts Button-->
+	<div class="shortcuts">
+		<!-- Display when expanded -->
+		<div class="shortcuts-expanded">
+			<hlayout hflex="1" vflex="1">
+				<combobox id="projectsCombobox" autodrop="true" apply="de.rs.scrumit.component.project.ProjectSelectionController">
+					<comboitem label="@load(each)" image="@load(vm.getIconImage(each))" />
+				</combobox>
+				<div apply="de.rs.scrumit.component.project.AddProjectButtonController">
+					<button id="addProjectButton" iconSclass="z-icon-plus" sclass="btn btn-minier btn-success" autodisable="self" />
+				</div>
+			</hlayout>
+		</div>
+		<!-- Display when collapsed -->
+		<div class="shortcuts-collapsed">
+			<button sclass="btn btn-minier btn-success" iconSclass="z-icon-plus"/>
+		</div>
+	</div>
+	<!-- Navigation List -->
+	<navbar id="navbar" sclass="nav-list" orient="vertical">
+	</navbar>
+	<!-- Toggler -->
+	<div sclass="sidebar-collapse">
+		<a id="toggler" iconSclass="z-icon-angle-double-left"/>
+	</div>
+	<!-- Tooptip for Error Navitem -->
+	<popup id="errorpp" zclass="tooltip" sclass="right tooltip-error cal">
+		<span zclass="tooltip-arrow"/>
+		<label zclass="tooltip-inner" value="2 New Errors"/>
+	</popup>
+	<popup id="docupp" zclass="tooltip" sclass="right tooltip-success cal">
+		<span zclass="tooltip-arrow"/>
+		<label zclass="tooltip-inner" value="2 New Entries"/>
+	</popup>
+</div>

@@ -1,0 +1,4 @@
+<button type="button" class="btn-success"/>
+<button type="button" class="btn-info"/>
+<button type="button" class="btn-warning"/>
+<button type="button" class="btn-danger"/>

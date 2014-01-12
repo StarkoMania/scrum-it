@@ -1,0 +1,10 @@
+<div sclass="breadcrumbs" apply="de.rs.scrumit.component.BreadcrumbComposer">
+	<div id="breadcrumb" sclass="breadcrumb">
+		<span sclass="home-icon z-icon-home"/>
+		<a label="Home" href="#"/>
+	</div>
+	<!-- Search input-->
+	<div sclass="nav-search">
+		<bandbox placeholder="Search ..." sclass="input-prepend"/>
+	</div>
+</div>

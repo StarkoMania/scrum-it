@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+	<persistence-unit name="myapp" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.username" value="scrumit.dev" />
+			<property name="hibernate.connection.password" value="1234" />
+			<property name="hibernate.show_sql" value="true" />
+			 <property name="hibernate.format_sql" value="true"/>
+			<property name="hibernate.connection.url" value="jdbc:postgresql:scrumit" />
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="create" /> -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- validate | update | create | create-drop -->
+			<property name="org.hibernate.envers.audit_strategy" value="org.hibernate.envers.strategy.ValidityAuditStrategy" />
+		</properties>
+	</persistence-unit>
+</persistence>

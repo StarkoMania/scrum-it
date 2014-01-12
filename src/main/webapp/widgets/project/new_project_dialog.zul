@@ -1,0 +1,34 @@
+<window id="createProjectWin" title="Neues Projekt erstellen" border="normal" hflex="min"
+    apply="de.rs.scrumit.controller.project.CreateProjectController"
+    position="center,center"
+    action="show: slideDown; hide: slideUp">
+    <vbox hflex="min" align="center">
+		<grid hflex="min">
+			<columns>
+				<column hflex="min" align="right" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					Code :
+					<textbox id="code" width="200px" constraint="no empty" maxlength="128" />
+				</row>
+				<row>
+					Name :
+					<textbox id="name" width="200px" constraint="no empty" maxlength="128" />
+				</row>
+				<row>
+					Beschreibung :
+					<textbox id="description" width="200px"/>
+				</row>
+				<row>
+					Start-Datum :
+					<datebox id="startDate" width="150px" constraint="no empty" />
+				</row>
+			</rows>
+		</grid>
+		<label id="message" sclass="warn" value="&#160;" />
+		<button id="create" label="Erstellen" />
+		<button id="close" label="Schließen" />
+	</vbox>
+</window>

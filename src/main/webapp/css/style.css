@@ -1,0 +1,24 @@
+a i.z-icon-project {
+	background-image: url('../imgs/project_icon.png');
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	min-width: 118px;
+	min-height: 30px;
+	text-align: center;
+	font-size: 18px;
+	margin-right: 2px;
+	height: auto;
+}
+
+.z-drag-over, .z-drag-over.z-panel-noheader .z-panel-body, .z-drag-over .z-panelchildren {
+	background-color: #E4E6E9;
+}
+
+.z-align-left {
+	text-align: left;
+}
+
+.release .z-columnchildren {
+	padding: 10px 10px 10px 0px;
+}

@@ -1,0 +1,44 @@
+<?page title="Login - scrumit"?>
+<!-- Load Bootstrap  -->
+<?link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link href="/css/style.css" rel="stylesheet" type="text/css"?>
+
+<!-- Google Open Sans font -->
+<!-- Load fonts from local -->
+<?link href="/css/fonts.css" rel="stylesheet" type="text/css"?>
+<?link href="/less/index.less" rel="stylesheet" type="text/css"?>
+
+<!-- it is a login page, no authentication protection and use anonymous template -->
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/template/template-anonymous.zul"?>
+<zk>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px">
+		<vlayout>
+			<window id="loginWin"
+				apply="de.rs.scrumit.controller.LoginController"
+				title="Login with you name" border="normal" hflex="min">
+				<vbox hflex="min" align="center">
+					<grid hflex="min">
+						<columns>
+							<column hflex="min" align="right" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								Account :
+								<textbox id="account" width="200px" value="admin" />
+							</row>
+							<row>
+								Password :
+								<textbox id="password" type="password" width="200px" value="1234" />
+							</row>
+						</rows>
+					</grid>
+					<label id="message" sclass="warn" value="&#160;" />
+					<button id="login" label="Login" focus="true" iconSclass="z-icon-mail-forward" sclass="btn btn-sm btn-info" />
+				</vbox>
+			</window>
+			(use account='admin' and password='1234' to login)
+		</vlayout>
+	</hbox>
+</zk>

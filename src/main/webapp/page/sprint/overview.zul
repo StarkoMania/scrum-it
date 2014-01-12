@@ -1,0 +1,17 @@
+<div sclass="conversation release z-panel" vflex="1">
+	<include src="/widgets/breadcrumb.zul" />
+	<vlayout sclass="page-content" xmlns:n="native" spacing="0" vflex="1" style="overflow-y: auto;">
+		<include src="/widgets/pageHeader.zul" />
+        <vlayout hflex="1" apply="de.rs.scrumit.component.sprint.SprintOverviewController">
+			<button label="Add Release" id="addReleaseBtn" iconSclass="z-icon-plus" sclass="btn btn-sm btn-info"/>
+			<columnlayout id="releaseTable" hflex="1" vflex="1">
+			</columnlayout>
+		</vlayout>
+	</vlayout>
+	<popup id="releasepp" sclass="date">
+		<vlayout vflex="1" hflex="1" spacing="5px" style="padding: 5px 10px;">
+			<button label="Edit Release" hflex="1" iconSclass="z-icon-edit" sclass="btn btn-minier btn-primary"/>
+			<button label="Add Sprint" hflex="1" iconSclass="z-icon-plus" sclass="btn btn-minier btn-primary"/>
+		</vlayout>
+	</popup>
+</div>
