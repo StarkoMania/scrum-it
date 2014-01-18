@@ -8,10 +8,10 @@
 			</columnlayout>
 		</vlayout>
 	</vlayout>
-	<popup id="releasepp" sclass="date">
+	<popup id="releasepp" sclass="date" apply="de.rs.scrumit.component.sprint.ReleaseButtonsController">
 		<vlayout vflex="1" hflex="1" spacing="5px" style="padding: 5px 10px;">
-			<button label="Edit Release" hflex="1" iconSclass="z-icon-edit" sclass="btn btn-minier btn-primary"/>
-			<button label="Add Sprint" hflex="1" iconSclass="z-icon-plus" sclass="btn btn-minier btn-primary"/>
+			<button id="editReleaseBtn" label="Edit Release" hflex="1" iconSclass="z-icon-edit" sclass="btn btn-minier btn-primary"/>
+			<button id="addSprintBtn" label="Add Sprint" hflex="1" iconSclass="z-icon-plus" sclass="btn btn-minier btn-primary"/>
 		</vlayout>
 	</popup>
 </div>

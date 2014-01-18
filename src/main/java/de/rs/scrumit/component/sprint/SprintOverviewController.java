@@ -52,98 +52,106 @@ public class SprintOverviewController extends BaseComponentComposer {
 	
 	@WireVariable("releaseService")
 	private ReleaseService releaseService;
+
+	private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 	
 	public void doAfterCompose(org.zkoss.zk.ui.Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		subscribe("onReleasesChangeEvent", new EventListener<Event>() {
+		EventListener<Event> reloadAllListener = new EventListener<Event>() {
 			@Override
 			public void onEvent(Event event) throws Exception {
 				reloadTableData();
 			}
-		});
+		};
+		subscribe("onReleasesChangeEvent", reloadAllListener);
+		subscribe("onSprintCreatedEvent", reloadAllListener);
 		reloadTableData();
 	}
 
 	private void reloadTableData() {
-		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 		
 		releaseTable.getChildren().clear();
 		List<ReleaseModel> releases = releaseService.getReleaseOfCurrentProject();
 		addReleaseDropZone();
 		for (ReleaseModel release : releases) {
-			Columnchildren column = new Columnchildren();
-			column.setHflex("1");
-			column.setVflex("1");
-			column.setDraggable("release");
-			Panel releasePanel = new Panel();
-			releasePanel.setBorder("normal");
-			releasePanel.setSclass("traffic");
-			column.getChildren().add(releasePanel);
-			Caption releaseCaption = new Caption(release.getCode()+" ("+format.format(release.getReleaseDate())+")");
-			releaseCaption.setIconSclass("z-icon-film");
-			releaseCaption.setSclass("small");
-			releasePanel.getChildren().add(releaseCaption);
-			Button actionButton = new Button("Actions");
-			actionButton.setSclass("btn btn-minier btn-primary pull-right");
-			actionButton.setPopup("releasepp, position=after_end");
-			releaseCaption.getChildren().add(actionButton);
-			Panelchildren releaseContentArea = new Panelchildren();
-			releasePanel.getChildren().add(releaseContentArea);
-			Vlayout sprintArea = new Vlayout();
-			sprintArea.setVflex("1");
-			sprintArea.setHflex("1");
-			sprintArea.setSpacing("5px");
-			releaseContentArea.getChildren().add(sprintArea);
-			if (release.getSprints() != null) {
-				for (SprintModel sprint : release.getSprints()) {
-					Panel sprintPrePanel = new Panel();
-					sprintPrePanel.setId(sprint.getCode()+"-zone");
-					sprintPrePanel.setHeight("15px");
-					sprintPrePanel.setBorder("none");
-					sprintPrePanel.setDroppable("sprint");
-					sprintArea.getChildren().add(sprintPrePanel);
-					
-					Panel sprintPanel = new Panel();
-					sprintPanel.setId(sprint.getCode());
-					sprintPanel.setHeight("150px");
-					sprintPanel.setHflex("1");
-					sprintPanel.setBorder("normal");
-					sprintPanel.setDraggable("sprint");
-					sprintArea.getChildren().add(sprintPanel);
-					
-					Caption sprintCaption = new Caption(sprint.getCode()+" ("+format.format(sprint.getStartdate())+" - "+format.format(sprint.getEnddate())+")");
-					sprintCaption.setIconSclass("z-icon-repeat");
-					sprintCaption.setSclass("small");
-					sprintPanel.getChildren().add(sprintCaption);
-					Panelchildren sprintContent = new Panelchildren();
-					sprintPanel.getChildren().add(sprintContent);
-					Label label = new Label(sprint.getCode());
-					sprintContent.getChildren().add(label);
-				}
-			}
-			
-			Panel dropZone = createDropZone();
-			sprintArea.getChildren().add(dropZone);
-			
-//			<columnchildren style="padding: 10px 10px 10px 0px;" hflex="1">
-//			<panel border="normal" sclass="traffic">
-//				<caption iconSclass="z-icon-film" label="Release 1" sclass="small">
-//					<button label="Actions" sclass="btn btn-minier btn-primary pull-right" popup="releasepp, position=after_end"/>
-//				</caption>
-//				<panelchildren>
-//					<vlayout vflex="1" hflex="1" spacing="5px">
-//						<panel id="panel1-zone" height="15px" border="none" droppable="true">
-//							<panelchildren></panelchildren>
-//						</panel>
-//						<panel id="panel1" height="150px" hflex="1" border="normal" draggable="true">
-//							<panelchildren>Panel C1-P1</panelchildren>
-//						</panel>
-			
-			//add sprints of release
+			Columnchildren column = createReleaseColumn(release);
 			
 			releaseTable.getChildren().add(column);
 			addReleaseDropZone();
 		}
+	}
+
+	private Columnchildren createReleaseColumn(final ReleaseModel release) {
+		Columnchildren column = new Columnchildren();
+		column.setHflex("1");
+		column.setVflex("1");
+		column.setDraggable("release");
+		Panel releasePanel = new Panel();
+		releasePanel.setBorder("normal");
+		releasePanel.setSclass("traffic");
+		releasePanel.setId(release.getCode());
+		column.getChildren().add(releasePanel);
+		Caption releaseCaption = new Caption(release.getCode()+" ("+format.format(release.getReleaseDate())+")");
+		releaseCaption.setIconSclass("z-icon-film");
+		releaseCaption.setSclass("small");
+		releasePanel.getChildren().add(releaseCaption);
+		Button actionButton = new Button("Actions");
+		actionButton.setSclass("btn btn-minier btn-primary pull-right");
+		actionButton.setPopup("releasepp, position=after_end");
+		actionButton.addEventListener("onClick", new EventListener<Event>() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				triggerEvent("onReleaseSelected", release);
+			}
+		});
+		releaseCaption.getChildren().add(actionButton);
+		Panelchildren releaseContentArea = new Panelchildren();
+		releasePanel.getChildren().add(releaseContentArea);
+		addSprintsToArea(release, releaseContentArea);
+		return column;
+	}
+
+	private void addSprintsToArea(ReleaseModel release,
+			Panelchildren releaseContentArea) {
+		Vlayout sprintArea = new Vlayout();
+		sprintArea.setVflex("1");
+		sprintArea.setHflex("1");
+		sprintArea.setSpacing("5px");
+		releaseContentArea.getChildren().add(sprintArea);
+		if (release.getSprints() != null) {
+			for (SprintModel sprint : release.getSprints()) {
+				addSprint(sprintArea, sprint);
+			}
+		}
+		
+		Panel dropZone = createDropZone();
+		sprintArea.getChildren().add(dropZone);
+	}
+
+	private void addSprint(Component sprintArea, SprintModel sprint) {
+		Panel sprintPrePanel = new Panel();
+		sprintPrePanel.setId(sprint.getCode()+"-zone");
+		sprintPrePanel.setHeight("15px");
+		sprintPrePanel.setBorder("none");
+		sprintPrePanel.setDroppable("sprint");
+		sprintArea.getChildren().add(sprintPrePanel);
+		
+		Panel sprintPanel = new Panel();
+		sprintPanel.setId(sprint.getCode());
+		sprintPanel.setHeight("150px");
+		sprintPanel.setHflex("1");
+		sprintPanel.setBorder("normal");
+		sprintPanel.setDraggable("sprint");
+		sprintArea.getChildren().add(sprintPanel);
+		
+		Caption sprintCaption = new Caption(sprint.getCode()+" ("+format.format(sprint.getStartdate())+" - "+format.format(sprint.getEnddate())+")");
+		sprintCaption.setIconSclass("z-icon-repeat");
+		sprintCaption.setSclass("small");
+		sprintPanel.getChildren().add(sprintCaption);
+		Panelchildren sprintContent = new Panelchildren();
+		sprintPanel.getChildren().add(sprintContent);
+		Label label = new Label(sprint.getCode());
+		sprintContent.getChildren().add(label);
 	}
 
 	private void addReleaseDropZone() {

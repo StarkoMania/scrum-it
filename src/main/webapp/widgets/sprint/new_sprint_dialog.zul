@@ -1,0 +1,19 @@
+<window id="creationWin" title="Create Sprint" border="normal" hflex="min" apply="de.rs.scrumit.component.sprint.CreateSprintController" position="center,center" action="show: slideDown; hide: slideUp">
+    <vbox hflex="min" align="center">
+    	<vlayout vflex="1" hflex="min" spacing="5px" sclass="z-align-left">
+			<label value="Code" />
+			<textbox id="codeBox" width="200px" constraint="no empty" placeholder="code" focus="true" maxlength="128" />
+			<label value="Start Date" />
+			<datebox id="startDateBox" width="150px" placeholder="start date" constraint="no empty" />
+			<label value="End Date" />
+			<datebox id="endDateBox" width="150px" placeholder="end date" constraint="no empty" />
+			<label value="Description" />
+			<ckeditor id="descriptionBox" height="300px" toolbar="Simple" filebrowserImageBrowseUrl="/widgets/input/wysiwyg_editor/img" filebrowserFlashBrowseUrl="/widgets/input/wysiwyg_editor/flash" customConfigurationsPath="/widgets/input/wysiwyg_editor/config.js"></ckeditor>
+			<label id="message" sclass="warn" value="&#160;" />
+			<hlayout>
+				<button id="create" label="Erstellen" iconSclass="z-icon-save" sclass="btn btn-sm btn-info" />
+				<button id="close" label="Schließen" iconSclass="z-icon-stop" sclass="btn btn-sm btn-info" />
+			</hlayout>
+    	</vlayout>
+	</vbox>
+</window>

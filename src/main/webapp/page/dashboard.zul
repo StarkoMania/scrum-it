@@ -2,17 +2,8 @@
 	<include src="/widgets/breadcrumb.zul" />
 	<vlayout sclass="page-content" xmlns:n="native" spacing="0" vflex="1" style="overflow-y: auto;">
 		<include src="/widgets/pageHeader.zul" />
-		<separator height="12px" />
-		<hlayout spacing="24px">
-			<label value="Dashboard" />
-		</hlayout>
-		<separator bar="true" />
-		<hlayout spacing="24px">
-	
-		</hlayout>
-		<separator bar="true" />
-		<hlayout spacing="24px">
+		<vlayout>
 			
-		</hlayout>
+		</vlayout>
 	</vlayout>
 </div>
