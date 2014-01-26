@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.rs</groupId>
 	<artifactId>scrumit</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<jdk.version>1.7</jdk.version>
 		<zk.version>7.0.0</zk.version>
